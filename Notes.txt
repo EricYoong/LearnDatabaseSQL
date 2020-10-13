@@ -1,0 +1,87 @@
+INSERT INTO departmenttb VALUES('D00001','Cardiology',043990808);
+INSERT INTO departmenttb VALUES('D00002','Accident and Emergency',043990818);
+INSERT INTO departmenttb VALUES('D00003','Finance' ,043990828);
+INSERT INTO departmenttb VALUES('D00004','General Surgery',043558888);
+INSERT INTO departmenttb VALUES('D00005','Human Resources',043558838);
+
+INSERT INTO servicetb VALUES('S00001','D00002','Blood Test','detect blood diseases and disorders, such as anemia, infections, clotting problems, blood cancers, and immune system disorders');
+INSERT INTO servicetb VALUES('S00002','D00002','Chest X-rays','can detect cancer, infection or air collecting in the space around a lung');
+INSERT INTO servicetb VALUES('S00003','D00002','Fasting Blood Sugar','Diabetes is typically diagnosed when fasting blood sugar levels are 126 mg/dl or higher.');
+INSERT INTO servicetb VALUES('S00004','D00002','Ultrasound Abdomen','Find the cause of abdominal pain, Diagnose and monitor tumors and cancers, Look for stones in the gallbladder or kidney and Look for damage after an injury');
+INSERT INTO servicetb VALUES('S00005','D00001','Electrocardiogram(ECG)','records the hearts rhythm and activity on a moving strip of paper or a line on a screen and measures the electrical activity of your heart to show whether or not it is working normally');
+
+INSERT INTO stafftb VALUES('S00001','U00001','123456','D00001','Lee Zi Mao',0174203300,'Penang','M','Doctor','Manager',56,120000,'1986-08-07');
+INSERT INTO stafftb VALUES('S00002','U00002','234567','D00002','Eric Moon',0161113344,'Kuala Lumpur','F','Nurse','NormalEmployee',56,4000,'1970-10-01');
+INSERT INTO stafftb VALUES('S00003','U00003','345678','D00003','Khaw Chee',0144667788,'Klang','M','Nurse','NormalEmployee',56,4000,'1975-11-10');
+INSERT INTO stafftb VALUES('S00004','U00004','456789','D00004','Low Chong',0185558866,'Ipoh','M','Doctor','ManagerAssistant',58,78000,'1977-02-14');
+INSERT INTO stafftb VALUES('S00005','U00005','567890','D00005','Teh Ming Hua',0118887788,'Johor','F','Manager','HumanResourcesManager',56,6000,'1987-03-06');
+
+
+INSERT INTO wardstb (`W_ID`, `W_CAPACITY`, `W_TYPE`, `W_OCCUPY`, `W_PRICE`) VALUES
+('W00001', 10, '10 bedded', 6, 80.00),
+('W00002', 6, '6 bedded', 4, 240.00),
+('W00003', 4, '4 bedded', 2, 300.00),
+('W00004', 2, 'Double room', 2, 500.00),
+('W00005', 1, 'Isolation room', 1, 500.00);
+
+INSERT INTO patienttb (`P_ID`, `U_ID`, `P_PASSWORD`, `P_NAME`, `P_GENDER`, `P_DOB`, `P_PHONE`, `P_ADDRESS`) VALUES
+('P00001', 'U00006', '123456', 'Tan Kok', 'M', '1998-03-06', 174552244, 'Penang'),
+('P00002', 'U00007', '123456', 'Tan Miin', 'F', '1988-12-10', 164455566, 'Klang'),
+('P00003', 'U00008', '123456', 'Lee Qiao', 'F', '1977-05-05', 167778888, 'Penang'),
+('P00004', 'U00009', '123456', 'Lim Min', 'F', '1976-06-12', 115554444, 'Penang'),
+('P00005', 'U00010', '123456', 'Lim Bao', 'M', '1978-10-15', 124445554, 'Kedah');
+
+INSERT INTO utilizationtb VALUES('B00001','W00001','P00001','Occupied','2015-01-30','2015-02-04');
+INSERT INTO utilizationtb VALUES('B00002','W00002','P00002','Vacant','2016-02-28','2016-03-02');
+INSERT INTO utilizationtb VALUES('B00003','W00003','P00003','Occupied','2016-03-30','2016-01-04');
+INSERT INTO utilizationtb VALUES('B00004','W00004','P00004','Vacant','2017-04-30','2017-05-01');
+INSERT INTO utilizationtb VALUES('B00005','W00005','P00005','Occupied','2018-05-27','2018-06-06');
+
+
+INSERT INTO transactiontb VALUES('T00001','P00001','S00001','2015-01-30','09:00','2015-02-04','14:00');
+INSERT INTO transactiontb VALUES('T00002','P00002','S00001','2016-02-28','14:00','2016-03-02','14:30');
+INSERT INTO transactiontb VALUES('T00003','P00003','S00001','2016-03-30','15:00','2016-04-01','12:00');
+INSERT INTO transactiontb VALUES('T00004','P00004','S00001','2017-04-30','02:00','2017-05-01','11:30');
+INSERT INTO transactiontb VALUES('T00005','P00005','S00001','2018-05-27','20:00','2018-06-06','08:45');
+
+INSERT INTO diseasetb (`DISEASE_ID`, `DISEASE_NAME`, `DISEASE_SYMPTOMS`) VALUES
+('DS0001', 'Infectious', '\r\nFever,Diarrhea,Fatigue,Muscle aches and Couging\r\n'),
+('DS0002', 'Low Blood Pressure', 'Light headedness, dizziness and fainting'),
+('DS0003', 'High Blood Pressure (Hypertension)', '\r\nSevere headaches, Fatigue, Difficulty breathing, Irregular heartbeat, Blood in the urine and vision problem\r\n'),
+('DS0004', 'Heart Attack', 'Pain, Pressure, Squeezing, Shortness of breath, Cold sweat, nausea and lightheadedness'),
+('DS0005', 'Stroke', 'Facial drooping, arm weakness, difficulty with speech, sudden numbness or weakness, loss of vision, confusion and severe headache');
+
+INSERT INTO diagnosistb (`DIA_ID`, `DIA_DISEASEID`, `DIA_DESCRIPTION`) VALUES
+('DIA001', 'DS0001', 'Fever,Diarrhea,Fatigue,Muscle aches and Couging'),
+('DIA002', 'DS0002', '\r\nLight headedness\r\n'),
+('DIA003', 'DS0003', 'Blood in the urine and vision problem\r\n'),
+('DIA004', 'DS0004', 'Cold sweat, nausea and lightheadedness\r\n'),
+('DIA005', 'DS0005', '\r\nFacial drooping, arm weakness, difficulty with speech\r\n');
+
+INSERT INTO medical_billingtb (`M_ID`, `P_ID`, `M_DATE`, `M_DESC`, `M_PRICE`) VALUES
+('M00001', 'P00001', '2015-02-01', 'Painkiller, Naprosyn', 200.00),
+('M00002', 'P00002', '2016-03-01', 'Antibiotic, Paracetamol', 500.00),
+('M00003', 'P00003', '2016-03-31', 'Paracetamol', 260.00),
+('M00004', 'P00004', '2017-04-30', 'Antibiotic, Naprosyn', 400.00),
+('M00005', 'P00005', '2018-06-01', 'Tylenol', 1200.00);
+
+
+INSERT INTO utility_billingtb VALUES('U00001','P00001','B00001','2015-02-04','5 days',400.00);
+INSERT INTO utility_billingtb VALUES('U00002','P00002','B00002','2016-03-02','2 days',480.00);
+INSERT INTO utility_billingtb VALUES('U00003','P00003','B00003','2016-04-01','2 days',600.00);
+INSERT INTO utility_billingtb VALUES('U00004','P00004','B00004','2017-05-01','2 days',800.00);
+INSERT INTO utility_billingtb VALUES('U00005','P00005','B00005','2018-06-06','11 days',5500.00);
+
+INSERT INTO surgery_billingtb VALUES('SU0001','P00001','2015-02-04','Arthroscopy',24000.00);
+INSERT INTO surgery_billingtb VALUES('SU0002','P00002','2016-03-02','Breast Biopsy',44800.00);
+INSERT INTO surgery_billingtb VALUES('SU0003','P00003','2016-04-01','Burn Excision/Debridement',66000.00);
+INSERT INTO surgery_billingtb VALUES('SU0004','P00004','2017-05-01','Cataract Surgery',18000.00);
+INSERT INTO surgery_billingtb VALUES('SU0005','P00005','2018-06-06','Circumcision',55000.00);
+
+
+INSERT INTO billtb VALUES('B00001','P00001','SU0001','U00001','M00001','2015-02-04',26200.00);
+INSERT INTO billtb VALUES('B00002','P00002','SU0002','U00002','M00002','2016-03-02',46200.00);
+INSERT INTO billtb VALUES('B00003','P00003','SU0003','U00003','M00003','2016-04-01',1460.00);
+INSERT INTO billtb VALUES('B00004','P00004','SU0004','U00004','M00004','2017-05-01',1600.00);
+INSERT INTO billtb VALUES('B00005','P00005','SU0005','U00005','M00005','2018-06-06',60620.00);
+
